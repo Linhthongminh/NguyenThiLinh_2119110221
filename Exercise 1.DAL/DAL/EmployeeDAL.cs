@@ -18,7 +18,7 @@ namespace Exercise_1.DAL.Employee
             SqlCommand cmd = new SqlCommand("select * from Employee", conn);
             SqlDataReader reader = cmd.ExecuteReader();
 
-            List<EmployeeDTO> employees = new List<EmployeeDTO>();
+            List<EmployeeDTO> employees = new List<EmployeeDTO>(); //U là trrrrrrrrrrrrrrrr
             DepartmentDAL departmentDAL = new DepartmentDAL();
             while (reader.Read())
             {
