@@ -23,18 +23,19 @@ namespace Exercise_1.DAL.DAL
             {
                 DepartmentDTO department = new DepartmentDTO();
                 department.ID_Department = reader["ID_Department"].ToString();
-                department.Name = reader["name"].ToString();
+                department.Name = reader["Name"].ToString();
                 departments.Add(department);
             }
             conn.Close();
             return departments;
         }
 
-        public DepartmentDTO ReadDepartment(int id)
+        public DepartmentDTO ReadDepartment(string id)
         {
             SqlConnection conn = CreateConnection();
             conn.Open();
-            SqlCommand cmd = new SqlCommand("select * from Department where id = " + id.ToString(), conn);
+            SqlCommand cmd = new SqlCommand("select * from Department where ID_Department = @id", conn);
+            cmd.Parameters.AddWithValue("@id", id);
             SqlDataReader reader = cmd.ExecuteReader();
             DepartmentDTO department = new DepartmentDTO();
             if (reader.HasRows && reader.Read())

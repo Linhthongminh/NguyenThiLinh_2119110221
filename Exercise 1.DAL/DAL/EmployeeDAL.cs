@@ -18,7 +18,7 @@ namespace Exercise_1.DAL.Employee
             SqlCommand cmd = new SqlCommand("select * from Employee", conn);
             SqlDataReader reader = cmd.ExecuteReader();
 
-            List<EmployeeDTO> employees = new List<EmployeeDTO>(); //U là trrrrrr
+            List<EmployeeDTO> employees = new List<EmployeeDTO>();
             DepartmentDAL departmentDAL = new DepartmentDAL();
             while (reader.Read())
             {
@@ -39,10 +39,11 @@ namespace Exercise_1.DAL.Employee
         {
             SqlConnection conn = CreateConnection();
             conn.Open();
-            SqlCommand cmd = new SqlCommand("update Employee set Name = @Name, DateBirth = @DateBirth, PlaceBirth = @PlaceBirth, ID_Department = @ID_Department where ID_Employee = @ID_Employee", conn);
+            SqlCommand cmd = new SqlCommand("update Employee set Name = @Name, DateBirth = @DateBirth, Gender = @Gender, PlaceBirth = @PlaceBirth, ID_Department = @ID_Department where ID_Employee = @ID_Employee", conn);
             cmd.Parameters.Add(new SqlParameter("@ID_Employee", employee.ID_Employee));
             cmd.Parameters.Add(new SqlParameter("@Name", employee.Name));
             cmd.Parameters.Add(new SqlParameter("@DateBirth", employee.DateBirth));
+            cmd.Parameters.Add(new SqlParameter("@Gender", employee.Gender));
             cmd.Parameters.Add(new SqlParameter("@PlaceBirth", employee.PlaceBirth));
             cmd.Parameters.Add(new SqlParameter("@ID_Department", employee.ID_Department.ID_Department));
             cmd.ExecuteNonQuery();
@@ -63,10 +64,12 @@ namespace Exercise_1.DAL.Employee
         {
             SqlConnection conn = CreateConnection();
             conn.Open();
-            SqlCommand cmd = new SqlCommand("update Employee set Name = @Name, ID_Department = @ID_Department where ID_Employee = @ID_Employee", conn);
+            SqlCommand cmd = new SqlCommand ("insert into Employee (ID_Employee, Name, DateBirth, Gender, PlaceBirth, ID_Department) " +
+                "values(@ID_Employee, @Name, @DateBirth, @Gender, @PlaceBirth, @ID_Department)", conn);
             cmd.Parameters.Add(new SqlParameter("@ID_Employee", employee.ID_Employee));
             cmd.Parameters.Add(new SqlParameter("@Name", employee.Name));
             cmd.Parameters.Add(new SqlParameter("@DateBirth", employee.DateBirth));
+            cmd.Parameters.Add(new SqlParameter("@Gender", employee.Gender));
             cmd.Parameters.Add(new SqlParameter("@PlaceBirth", employee.PlaceBirth));
             cmd.Parameters.Add(new SqlParameter("@ID_Department", employee.ID_Department.ID_Department));
             cmd.ExecuteNonQuery();
