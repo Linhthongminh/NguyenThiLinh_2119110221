@@ -22,7 +22,7 @@ namespace Exercise_1.DAL.DAL
             while (reader.Read())
             {
                 DepartmentDTO department = new DepartmentDTO();
-                department.ID = int.Parse(reader["id"].ToString());
+                department.ID_Department = reader["ID_Department"].ToString();
                 department.Name = reader["name"].ToString();
                 departments.Add(department);
             }
@@ -39,8 +39,8 @@ namespace Exercise_1.DAL.DAL
             DepartmentDTO department = new DepartmentDTO();
             if (reader.HasRows && reader.Read())
             {
-                department.ID = int.Parse(reader["id"].ToString());
-                department.Name = reader["name"].ToString();
+                department.ID_Department = reader["ID_Department"].ToString();
+                department.Name = reader["Name"].ToString();
             }
             conn.Close();
             return department;

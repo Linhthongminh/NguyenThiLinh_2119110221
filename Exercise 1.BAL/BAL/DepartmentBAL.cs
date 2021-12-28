@@ -11,7 +11,7 @@ namespace Exercise_1.BAL.BAL
     public class DepartmentBAL
     {
         DepartmentDAL dal = new DepartmentDAL();
-        public List<DepartmentDTO> ReadAreaList()
+        public List<DepartmentDTO> ReadDepartmentList()
         {
             List<DepartmentDTO> departments = dal.ReadDepartmentList();
             return departments;

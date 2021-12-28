@@ -1,5 +1,6 @@
 ﻿using Exercise_1.DAL.Employee;
 using Exercise_1.DTO.DTO;
+using Exercise_1.DTO.Employee;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,25 +12,25 @@ namespace Exercise_1.BAL.Employee
     public class EmployeeBAL
     {
         EmployeeDAL dal = new EmployeeDAL();
-        public List<DepartmentDTO> ReadEmployee()
+        public List<EmployeeDTO> ReadEmployee()
         {
-            List<DepartmentDTO> departments = dal.ReadEmployee();
-            return departments;
+            List<EmployeeDTO> employees = dal.ReadEmployee();
+            return employees;
         }
 
-        public void NewEmployee(DepartmentDTO department)
+        public void NewEmployee(EmployeeDTO employee)
         {
-            dal.NewEmployee(department);
+            dal.NewEmployee(employee);
         }
 
-        public void DeleteEmployee(DepartmentDTO department)
+        public void DeleteEmployee(EmployeeDTO employee)
         {
-            dal.DeleteEmployee(department);
+            dal.DeleteEmployee(employee);
         }
 
-        public void EditEmployee(DepartmentDTO department)
+        public void EditEmployee(EmployeeDTO employee)
         {
-            dal.EditEmployee(department);
+            dal.EditEmployee(employee);
         }
     }
 }

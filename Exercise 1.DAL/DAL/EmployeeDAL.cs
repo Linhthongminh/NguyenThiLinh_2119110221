@@ -23,31 +23,33 @@ namespace Exercise_1.DAL.Employee
             while (reader.Read())
             {
                 EmployeeDTO employee = new EmployeeDTO();
-                employee.ID_Employee = int.Parse(reader["id"].ToString());
-                employee.Name = reader["name"].ToString();
-                employee.DateBirth = DateTime.Parse(reader["datebirth"].ToString());
-                employee.Gender = int.Parse(reader["gender"].ToString());
-                employee.PlaceBirth = reader["placebirth"].ToString();
-                employee.ID_Department = departmentDAL.ReadDepartment(int.Parse(reader["id_area"].ToString()));
+                employee.ID_Employee = reader["ID_Employee"].ToString();
+                employee.Name = reader["Name"].ToString();
+                employee.DateBirth = reader["DateBirth"].ToString();
+                employee.Gender = (bool)reader["Gender"];
+                employee.PlaceBirth = reader["PlaceBirth"].ToString();
+                employee.ID_Department = departmentDAL.ReadDepartment(reader["ID_Department"].ToString());
                 employees.Add(employee);
             }
             conn.Close();
             return employees;
         }
 
-        public void EditCustomer(EmployeeDTO employee)
+        public void EditEmployee(EmployeeDTO employee)
         {
             SqlConnection conn = CreateConnection();
             conn.Open();
-            SqlCommand cmd = new SqlCommand("update Employee set name = @name, ID_Department = @ID_Department where ID_Employee = @ID_Employee", conn);
-            cmd.Parameters.Add(new SqlParameter("@id", employee.ID_Department));
-            cmd.Parameters.Add(new SqlParameter("@name", employee.Name));
-            cmd.Parameters.Add(new SqlParameter("@id_area", employee.ID_Department.ID));
+            SqlCommand cmd = new SqlCommand("update Employee set Name = @Name, DateBirth = @DateBirth, PlaceBirth = @PlaceBirth, ID_Department = @ID_Department where ID_Employee = @ID_Employee", conn);
+            cmd.Parameters.Add(new SqlParameter("@ID_Employee", employee.ID_Employee));
+            cmd.Parameters.Add(new SqlParameter("@Name", employee.Name));
+            cmd.Parameters.Add(new SqlParameter("@DateBirth", employee.DateBirth));
+            cmd.Parameters.Add(new SqlParameter("@PlaceBirth", employee.PlaceBirth));
+            cmd.Parameters.Add(new SqlParameter("@ID_Department", employee.ID_Department.ID_Department));
             cmd.ExecuteNonQuery();
             conn.Close();
         }
 
-        public void DeleteCustomer(EmployeeDTO employee)
+        public void DeleteEmployee(EmployeeDTO employee)
         {
             SqlConnection conn = CreateConnection();
             conn.Open();
@@ -57,14 +59,16 @@ namespace Exercise_1.DAL.Employee
             conn.Close();
         }
 
-        public void NewCustomer(EmployeeDTO employee)
+        public void NewEmployee(EmployeeDTO employee)
         {
             SqlConnection conn = CreateConnection();
             conn.Open();
-            SqlCommand cmd = new SqlCommand("update Employee set name = @name, ID_Department = @ID_Department where ID_Employee = @ID_Employee", conn);
-            cmd.Parameters.Add(new SqlParameter("@id", employee.ID_Department));
-            cmd.Parameters.Add(new SqlParameter("@name", employee.Name));
-            cmd.Parameters.Add(new SqlParameter("@id_area", employee.ID_Department.ID));
+            SqlCommand cmd = new SqlCommand("update Employee set Name = @Name, ID_Department = @ID_Department where ID_Employee = @ID_Employee", conn);
+            cmd.Parameters.Add(new SqlParameter("@ID_Employee", employee.ID_Employee));
+            cmd.Parameters.Add(new SqlParameter("@Name", employee.Name));
+            cmd.Parameters.Add(new SqlParameter("@DateBirth", employee.DateBirth));
+            cmd.Parameters.Add(new SqlParameter("@PlaceBirth", employee.PlaceBirth));
+            cmd.Parameters.Add(new SqlParameter("@ID_Department", employee.ID_Department.ID_Department));
             cmd.ExecuteNonQuery();
             conn.Close();
         }
