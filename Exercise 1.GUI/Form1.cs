@@ -28,14 +28,14 @@ namespace Exercise_1.GUI
             List<EmployeeDTO> employees = employeeBAL.ReadEmployee();
             foreach (EmployeeDTO employee in employees)
             {
-                dgvEmployee.Rows.Add(employee.ID_Employee, employee.Name, employee.Name_Department);
+                dgvEmployee.Rows.Add(employee.ID_Employee,employee.Name, employee.DateBirth, employee.Gender, employee.PlaceBirth, employee.Name_Department);
             }
             List<DepartmentDTO> departments = departmentBAL.ReadDepartmentList();
             foreach (DepartmentDTO department in departments)
             {
                 cbMajor.Items.Add(department);
             }
-            cbMajor.DisplayMember = "name";
+            cbMajor.DisplayMember = "Name";
         }
 
         private void dgvEmployee_RowEnter(object sender, DataGridViewCellEventArgs e)

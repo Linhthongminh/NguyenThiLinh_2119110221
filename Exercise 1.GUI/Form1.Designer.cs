@@ -40,16 +40,16 @@ namespace Exercise_1.GUI
             this.label5 = new System.Windows.Forms.Label();
             this.cbGender = new System.Windows.Forms.CheckBox();
             this.dgvEmployee = new System.Windows.Forms.DataGridView();
-            this.btNew = new System.Windows.Forms.Button();
-            this.btDelete = new System.Windows.Forms.Button();
-            this.btEdit = new System.Windows.Forms.Button();
-            this.btExit = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btNew = new System.Windows.Forms.Button();
+            this.btDelete = new System.Windows.Forms.Button();
+            this.btEdit = new System.Windows.Forms.Button();
+            this.btExit = new System.Windows.Forms.Button();
             this.tbDB = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployee)).BeginInit();
             this.SuspendLayout();
@@ -133,9 +133,9 @@ namespace Exercise_1.GUI
             this.cbGender.AutoSize = true;
             this.cbGender.Location = new System.Drawing.Point(695, 25);
             this.cbGender.Name = "cbGender";
-            this.cbGender.Size = new System.Drawing.Size(61, 17);
+            this.cbGender.Size = new System.Drawing.Size(87, 17);
             this.cbGender.TabIndex = 48;
-            this.cbGender.Text = "Gender";
+            this.cbGender.Text = "Gender Male";
             this.cbGender.UseVisualStyleBackColor = true;
             // 
             // dgvEmployee
@@ -153,6 +153,39 @@ namespace Exercise_1.GUI
             this.dgvEmployee.Size = new System.Drawing.Size(758, 307);
             this.dgvEmployee.TabIndex = 49;
             this.dgvEmployee.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployee_RowEnter);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Code";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Name";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 150;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Date of birth";
+            this.Column3.Name = "Column3";
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Gender";
+            this.Column6.Name = "Column6";
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Place of birth";
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 150;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Major";
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 150;
             // 
             // btNew
             // 
@@ -193,39 +226,6 @@ namespace Exercise_1.GUI
             this.btExit.Text = "Exit";
             this.btExit.UseVisualStyleBackColor = true;
             this.btExit.Click += new System.EventHandler(this.btExit_Click);
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Code";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Name";
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 150;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Date of birth";
-            this.Column3.Name = "Column3";
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Gender";
-            this.Column6.Name = "Column6";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Place of birth";
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 150;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Major";
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 150;
             // 
             // tbDB
             // 
