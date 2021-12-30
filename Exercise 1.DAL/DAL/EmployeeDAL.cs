@@ -15,7 +15,7 @@ namespace Exercise_1.DAL.Employee
         {
             SqlConnection conn = CreateConnection();
             conn.Open();
-            SqlCommand cmd = new SqlCommand("select * from Employee", conn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Employee", conn);
             SqlDataReader reader = cmd.ExecuteReader();
 
             List<EmployeeDTO> employees = new List<EmployeeDTO>();
@@ -38,42 +38,80 @@ namespace Exercise_1.DAL.Employee
         public void EditEmployee(EmployeeDTO employee)
         {
             SqlConnection conn = CreateConnection();
-            conn.Open();
-            SqlCommand cmd = new SqlCommand("update Employee set Name = @Name, DateBirth = @DateBirth, Gender = @Gender, PlaceBirth = @PlaceBirth, ID_Department = @ID_Department where ID_Employee = @ID_Employee", conn);
-            cmd.Parameters.Add(new SqlParameter("@ID_Employee", employee.ID_Employee));
-            cmd.Parameters.Add(new SqlParameter("@Name", employee.Name));
-            cmd.Parameters.Add(new SqlParameter("@DateBirth", employee.DateBirth));
-            cmd.Parameters.Add(new SqlParameter("@Gender", employee.Gender));
-            cmd.Parameters.Add(new SqlParameter("@PlaceBirth", employee.PlaceBirth));
-            cmd.Parameters.Add(new SqlParameter("@ID_Department", employee.ID_Department.ID_Department));
-            cmd.ExecuteNonQuery();
-            conn.Close();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("UPDATE Employee SET Name = @Name, DateBirth = @DateBirth, Gender = @Gender, PlaceBirth = @PlaceBirth, ID_Department = @ID_Department where ID_Employee = @ID_Employee", conn);
+                cmd.Parameters.Add(new SqlParameter("@ID_Employee", employee.ID_Employee));
+                cmd.Parameters.Add(new SqlParameter("@Name", employee.Name));
+                cmd.Parameters.Add(new SqlParameter("@DateBirth", employee.DateBirth));
+                cmd.Parameters.Add(new SqlParameter("@Gender", employee.Gender));
+                cmd.Parameters.Add(new SqlParameter("@PlaceBirth", employee.PlaceBirth));
+                cmd.Parameters.Add(new SqlParameter("@ID_Department", employee.ID_Department.ID_Department));
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                Console.WriteLine("Successfully");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Something was wrong!" + e);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         public void DeleteEmployee(EmployeeDTO employee)
         {
             SqlConnection conn = CreateConnection();
-            conn.Open();
-            SqlCommand cmd = new SqlCommand("delete from Employee where ID_Employee = @ID_Employee", conn);
-            cmd.Parameters.Add(new SqlParameter("@ID_Employee", employee.ID_Employee));
-            cmd.ExecuteNonQuery();
-            conn.Close();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("DELETE FROM Employee WHERE ID_Employee = @ID_Employee", conn);
+                cmd.Parameters.Add(new SqlParameter("@ID_Employee", employee.ID_Employee));
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                Console.WriteLine("Successfully");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Something was wrong!" + e);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         public void NewEmployee(EmployeeDTO employee)
         {
             SqlConnection conn = CreateConnection();
-            conn.Open();
-            SqlCommand cmd = new SqlCommand ("insert into Employee (ID_Employee, Name, DateBirth, Gender, PlaceBirth, ID_Department) " +
-                "values(@ID_Employee, @Name, @DateBirth, @Gender, @PlaceBirth, @ID_Department)", conn);
-            cmd.Parameters.Add(new SqlParameter("@ID_Employee", employee.ID_Employee));
-            cmd.Parameters.Add(new SqlParameter("@Name", employee.Name));
-            cmd.Parameters.Add(new SqlParameter("@DateBirth", employee.DateBirth));
-            cmd.Parameters.Add(new SqlParameter("@Gender", employee.Gender));
-            cmd.Parameters.Add(new SqlParameter("@PlaceBirth", employee.PlaceBirth));
-            cmd.Parameters.Add(new SqlParameter("@ID_Department", employee.ID_Department.ID_Department));
-            cmd.ExecuteNonQuery();
-            conn.Close();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("INSERT INTO Employee (ID_Employee, Name, DateBirth, Gender, PlaceBirth, ID_Department) " +
+                    "VALUES(@ID_Employee, @Name, @DateBirth, @Gender, @PlaceBirth, @ID_Department)", conn);
+                cmd.Parameters.Add(new SqlParameter("@ID_Employee", employee.ID_Employee));
+                cmd.Parameters.Add(new SqlParameter("@Name", employee.Name));
+                cmd.Parameters.Add(new SqlParameter("@DateBirth", employee.DateBirth));
+                cmd.Parameters.Add(new SqlParameter("@Gender", employee.Gender));
+                cmd.Parameters.Add(new SqlParameter("@PlaceBirth", employee.PlaceBirth));
+                cmd.Parameters.Add(new SqlParameter("@ID_Department", employee.ID_Department.ID_Department));
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                Console.WriteLine("Successfully");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Something was wrong!" + e);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 }
